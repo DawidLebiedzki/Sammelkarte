@@ -1,4 +1,4 @@
-package de.tillmann.model;
+package model;
 
 public class ErrorDescription {
 
