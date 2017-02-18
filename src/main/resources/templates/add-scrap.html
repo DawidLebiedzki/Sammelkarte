@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width" />
+
+
+    <title>Sammelkarte | Add Schrott</title>
+    <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/dist/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/dist/images/favicon.ico}" type="image/x-icon"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+
+    <link href="../static/dist/css/addon/effect-light.min.css" th:href="@{/dist/css/addon/effect-light.min.css}" rel="stylesheet" />
+    <link href="../static/dist/css/quantumui.min.css" th:href="@{/dist/css/quantumui.min.css}" rel="stylesheet" />
+    <style type="text/css">
+        h1 {
+            color: #8a8a8a;
+            font-size: 30px;
+        }
+
+        h1 i {
+            color: #9a9a9a;
+            font-size: 24px;
+        }
+
+        h2.directive {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .color-box {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+        }
+
+        .bg-white {
+            background-color: #fff;
+        }
+        /**pageable icons*/
+        .fu-search:before,
+        .fu-arrow-left:before,
+        .fu-angle-l:before,
+        .fu-arrow-right:before,
+        .fu-angle-r:before {
+            font-family: 'Glyphicons Halflings';
+        }
+
+        .fu-search:before {
+            content: "\e003";
+        }
+
+        .fu-arrow-left:before {
+            content: "\e091";
+        }
+
+        .fu-arrow-right:before {
+            content: "\e092";
+        }
+
+        .fu-angle-l:before {
+            content: "\e257";
+        }
+
+        .fu-angle-r:before {
+            content: "\e258";
+        }
+
+        .text-block {
+            display: block;
+        }
+
+        .text-sm {
+            font-size: 0.9em;
+        }
+
+        .text-xs {
+            font-size: 0.7em;
+        }
+
+        .gray {
+            color: #aaa;
+        }
+
+        .navbar-toggle {
+            margin-right: 0;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.13/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.13/angular-sanitize.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.13/angular-animate.min.js"></script>
+    <script src="../static/dist/js/quantumui-all.min.js" th:src="@{/dist/js/quantumui-all.min.js}"></script>
+    <script src="../static/dist/config/icons.js" th:src="@{/dist/config/icons.js}"></script>
+    <script src="../static/dist/doc/js/app.js" th:src="@{/dist/doc/js/app.js}" ></script>
+    <script src="../static/dist/doc/js/indexController.js" th:src="@{/dist/doc/js/indexController.js}" ></script>
+</head>
+
+<body data-ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;" >
+<!-- Navbar -->
+<header th:include="_menu :: navbar-menu" />
+<!-- Colapse Menu Right -->
+<div th:include="_menu :: colapse-menu" />
+</body>
+</html>

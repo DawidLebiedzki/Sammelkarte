@@ -11,4 +11,14 @@ public class ViewController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("/add-user")
+        public String addUser(){
+            return "add-user";
+        }
+
+    @RequestMapping("/add-scrap")
+    public String addScrap(){
+        return "add-scrap";
+    }
 }

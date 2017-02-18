@@ -1,0 +1,146 @@
+<header  th:fragment="navbar-menu">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="margin:0;">
+        <div class="container-fluid">
+            <div class="pull-left" style="height:50px; width:35px;" ng-hide="myLeftAside.$isOpen">
+                <a href="#" class="titip-right" data-title="Toggle Aside" data-aside-toggle="#leftMenuAside" style="padding-top:15px; font-size:14px; color:#fff;">
+                    <i class="glyphicon glyphicon-menu-hamburger"></i>
+                </a>
+            </div>
+            <div class="navbar-header-right">
+
+                <button type="button" class="navbar-toggle" data-nq-collapse="" data-target-id=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="padding:5px 15px;">
+                    <img src="http://quantumui.org/data/logos/quantumui_logo_alt_40.png" alt="QuantumUI Logo" />
+                </a>
+
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Login" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in !</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div th:fragment="colapse-menu" style="width:100%; overflow:hidden; margin-top:-5px;" ng-init="asideSettings={enlargeHover:true, offCanvas:'mobile'}">
+    <div id="leftMenuAside" data-nq-aside="myLeftAside" class="aside aside-with-menu"
+         data-collapsible="true"
+         data-top-offset="50px"
+         data-off-canvas="{{asideSettings.offCanvas}}"
+         data-pinnable="true"
+         data-opened="true"
+         data-collapsed="true"
+         data-enlarge-hover="{{asideSettings.enlargeHover}}"
+         data-ng-swipe-left="$aside.toggleCollapse(true);"
+         data-ng-swipe-right="$aside.toggleCollapse(false);">
+        <div class="aside-header">
+            <div class="aside-buttons">
+                <span ng-show="myLeftAside.$collapsed" ng-click="$aside.toggleCollapse()" class="titip-right" data-title="Collapse"><i class="glyphicon glyphicon-arrow-right"></i></span>
+                <span ng-hide="myLeftAside.$collapsed" ng-click="$aside.toggleCollapse()" class="titip-right" data-title="Collapse"><i class="glyphicon glyphicon-arrow-left"></i></span>
+                <span ng-hide="myLeftAside.$collapsed" ng-click="asideSettings.enlargeHover = !$aside.$pinned; $aside.togglePin();" class="titip-right" data-title="Toggle Pin"><i class="glyphicon glyphicon-pushpin"></i></span>
+                <span ng-hide="myLeftAside.$collapsed" ng-click="$aside.close()" class="titip-right" data-title="Close"><i class="glyphicon glyphicon-remove"></i></span>
+            </div>
+            <span ng-hide="$aside.$collapsed" class="aside-title">Aside With Menu</span>
+
+        </div>
+        <div class="aside-body" style="overflow-y:auto;">
+            <p style="padding:10px 20px; margin:0; white-space:nowrap; font-weight:bold; color:#fff; cursor:pointer;">
+                        <span ng-click="asideSettings.offCanvas = asideSettings.offCanvas == 'mobile' ? 'all': 'mobile'">
+                            <i class="glyphicon glyphicon-resize-horizontal"></i>
+                            <span ng-hide="$aside.$collapsed" class="menu-text">
+                                Toggle Off Canvas
+                            </span>
+                        </span>
+            </p>
+            <ul class="nav nav-stacked">
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-home"></i>
+                        <span ng-hide="$aside.$collapsed" class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-book"></i>
+                        <span ng-hide="$aside.$collapsed" class="menu-text">Menu Example</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <span ng-hide="$aside.$collapsed" class="menu-text">Menu Example</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-nq-collapse="" data-target-id="#collapseExample">
+                        <i class="glyphicon glyphicon-folder-close"></i>
+                        <span ng-hide="$aside.$collapsed" class="menu-text">Collapse Example</span>
+                    </a>
+                    <ul id="collapseExample" class="nav nav-stacked" ng-hide="$aside.$collapsed">
+                        <li>
+                            <a href="#" data-nq-collapse="" data-target-id="#collapseExample2">
+                                <i class="glyphicon glyphicon-tasks"></i>
+                                <span ng-hide="$aside.$collapsed" class="menu-text">Collapse Example 2</span>
+                            </a>
+                            <ul id="collapseExample2" class="nav nav-stacked" ng-hide="$aside.$collapsed" style="padding-left:15px;">
+                                <li>
+                                    <a href="#" style="padding-left:35px;">
+                                        Sub Menu Collapse 2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" style="padding-left:35px;">
+                                        Sub Menu Collapse 2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" style="padding-left:35px;">
+                                        Sub Menu Collapse 2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" style="padding-left:35px;">
+                                        Sub Menu Collapse 2
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Sub Menu Collapse
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Sub Menu Collapse
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Sub Menu Collapse
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="aside-footer" style="padding-left:20px; line-height:35px;">
+            <strong class="text-muted" ng-hide="$aside.$collapsed">Aside Footer</strong>
+        </div>
+    </div>
+</div>
