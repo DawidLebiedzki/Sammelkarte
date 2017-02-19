@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width" />
 
 
-    <title>Sammelkarte | Add Schrott</title>
+    <title>Coprii | Login</title>
     <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/dist/images/favicon.ico}" type="image/x-icon"/>
     <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/dist/images/favicon.ico}" type="image/x-icon"/>
 
@@ -14,6 +15,7 @@
 
     <link href="../static/dist/css/addon/effect-light.min.css" th:href="@{/dist/css/addon/effect-light.min.css}" rel="stylesheet" />
     <link href="../static/dist/css/quantumui.min.css" th:href="@{/dist/css/quantumui.min.css}" rel="stylesheet" />
+    <link href="..static/dist/css/signin.css" th:href="@{/dist/css/signin.css}" rel="stylesheet"/>
     <style type="text/css">
         h1 {
             color: #8a8a8a;
@@ -99,9 +101,19 @@
 </head>
 
 <body data-ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;" >
-<!-- Navbar -->
-<header th:include="_menu :: navbar-menu" />
-<!-- Colapse Menu Right -->
-<div th:include="_menu :: colapse-menu" />
+
+<div class="container">
+
+    <form class="form-signin" th:action="@{/login}" method="POST">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label class="sr-only">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Username" required="required" autofocus="autofocus"/>
+        <label class="sr-only">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" required="required" />
+
+        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
+    </form>
+
+</div> <!-- /container -->
 </body>
 </html>
