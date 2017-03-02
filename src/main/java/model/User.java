@@ -4,31 +4,45 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-
-import service.UserService;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import java.util.Collection;
 
-@Entity(name="user")
+@Entity(name="users")
 public class User implements UserDetails {
 
-	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy =GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
+	@NotNull
+	@Size(min = 3, max = 30)
 	@Column(name = "first_name")
 	private String firstName;
+
+	@NotNull
+	@Size(min = 3, max = 30)
 	@Column(name = "last_name")
 	private String lastName;
-	@Column(name = "login")
+
+	@NotNull
+	@Digits(integer = 5, fraction = 4)
+	@Id
+	@Column(name = "username")
 	private String username;
+
+	@NotNull
 	@Column(name ="password")
 	private String password;
 
 
+
+
 	public User(){}
 		
-	public User(int id, String firstName, String lastName, String username, String password) {
+	public User(int id,String firstName, String lastName, String username, String password) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -36,7 +50,6 @@ public class User implements UserDetails {
 		this.username = username;
 		this.password = password;
 	}
-
 
 	public int getId() {
 		return id;
@@ -60,8 +73,7 @@ public class User implements UserDetails {
 		return username;
 	}
 
-
-    @Override
+	@Override
 	public boolean isAccountNonExpired() {
 		return false;
 	}
@@ -99,9 +111,10 @@ public class User implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
+		return "User [id" + id +"firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + "]";
 	}
 
 
 }
+

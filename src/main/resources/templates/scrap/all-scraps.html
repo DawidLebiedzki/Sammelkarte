@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width"/>
+
+
+    <title>Coprii | Alle Benutzer</title>
+    <!-- Styles-->
+    <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+
+    <!-- Js Scripts-->
+    <script src="../static/dist/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
+    <script src="../static/dist/js/ui-bootstrap-tpls-2.5.0.min.js" th:src="@{/js/ui-bootstrap-tpls-2.5.0.min.js}"></script>
+
+</head>
+
+<body data-ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;">
+<!-- Navbar -->
+<header th:include="_menu :: navbar-menu"/>
+
+
+<div class="content-wrapper container-fluid">
+    <div class="container">
+        <div class="clearfix">
+            <h1><span class="glyphicon glyphicon-trash"></span> Fehlersammelkarte</h1>
+            <hr/>
+            <form class="form-horizontal" th:action="@{/user/create}" method="post"
+                  style="padding-left:15px; padding-right:15px; padding-top: 15px;">
+                <div class="row">
+                    <div class="panel-heading clearfix">
+                        <h2 class="panel-title pull-left"><span class="fic glyphicon glyphicon-pencil"></span> Produktbeschreibung</h2>
+                    </div>
+                    <div class="col-md-12" style="padding-left:15px; padding-right:15px; padding-top: 15px;">
+                        <div class="form-horizontal">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Auftragsnummer :</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="lastName"
+                                               placeholder="Auftragsnummer"
+                                               required="required"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Variante :</label>
+                                    <div class="col-md-4">
+                                        <select class="form-control" name="staticSelectModel" data-nq-select=""
+                                                data-qo-placeholder="static select options"
+                                                data-ng-model="staticSelectModel">
+                                            <option>F00773</option>
+                                            <option>F00775</option>
+                                            <option>F00848</option>
+                                            <option>F00849</option>
+                                            <option>F01185</option>
+                                            <option>F01186</option>
+                                            <option>F00850</option>
+                                            <option>F00851</option>
+                                            <option>F01181</option>
+                                            <option>F01182</option>
+                                            <option>F00897</option>
+                                            <option>F00898</option>
+                                            <option>F00965</option>
+                                            <option>F00966</option>
+                                            <option>F01027</option>
+                                            <option>F01028</option>
+                                            <option>F01078</option>
+                                            <option>F01079</option>
+                                            <option>F01197</option>
+                                            <option>F01198</option>
+                                            <option>F01046</option>
+                                            <option>F01047</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Datum :</label>
+                                    <div class="col-md-4" ng-init="changeValue = 5">
+                                        <input type="text" ng-model="commonDatepicker" class="form-control"
+                                               data-nq-datepicker="" placeholder="datepicker"/>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Maschinen-Nr :</label>
+                                    <div class="col-md-4">
+                                        <select class="form-control" name="staticSelectModel" data-nq-select=""
+                                                data-qo-placeholder="static select options"
+                                                data-ng-model="staticSelectModel">
+                                            <option>Exzenterpresse 27</option>
+                                            <option>Exzenterpresse 108</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Kunde :</label>
+                                    <div class="col-md-4">
+                                        <select class="form-control" name="staticSelectModel" data-nq-select=""
+                                                data-qo-placeholder="static select options"
+                                                data-ng-model="staticSelectModel">
+                                            <option>Webasto</option>
+                                            <option>Inteva</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <hr/>
+                <div class="row">
+
+
+                    <div class="panel-heading clearfix ">
+                        <h2 class="panel-title pull-left"><span class="fic glyphicon glyphicon-pencil"></span> Prüfergebnisse
+                            der Stichproben:</h2>
+                    </div>
+                    <div class="col-md-12" style="padding-left:15px; padding-right:15px; padding-top: 15px;">
+                        <div class="form-horizontal">
+                            <div class="col-md-6">
+
+
+                                <div class="form-group" style="padding-top: 50px;">
+                                    <label class="col-md-6 control-label">Drukstellen durch Nietreste :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="firstName" placeholder="0"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Beschädigung der Beschichtung durch Grat
+                                        :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Aufkocher auf der Oberfläche :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Etikett fehlerhaft / vertauscht :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Bauteil zu kurz :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Radien fehlen (Beschnittfehler) :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+
+
+                                <div class="form-group" style="padding-top: 50px;">
+                                    <label class="col-md-6 control-label">Drukstellen durch Nietreste :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="firstName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Beschädigung der Beschichtung durch Grat
+                                        :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Aufkocher auf der Oberfläche :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Etikett fehlerhaft / vertauscht :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Bauteil zu kurz :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label">Radien fehlen (Beschnittfehler) :</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="lastName" placeholder="0"
+                                                   required="required"/>
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">-</button>
+                                            <button class="btn btn-default" type="button">+</button>
+                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="row">
+            <br/>
+            <div class="col-md-4 col-md-offset-10">
+                <button type="submit button" data-nq-modal-box="" data-box-type="confirm" class="btn btn-success"
+                        data-after-confirm="displayAlert('Confirmed', 'You are confirmed.', 'info')"
+                        data-qs-content="This is a simple confirmation
+                                              This is a simple modal.
+                                              Do not trigger any function after confirm or cancel.&lt;">
+                    Speichern
+                </button>
+            </div>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+<hr/>
+
+<div class="content-wrapper container-fluid">
+    <div class="container">
+
+        <h1><i class="glyphicon glyphicon-th-list"></i> Die Tabelle der Schrott</h1>
+        <hr/>
+        <div class="panel panel-default" data-nq-pageable="contactList" data-qo-alias="contactsTable"
+             data-qo-pageable-model="contacts"
+             data-qo-selectable="true" data-on-refresh="tableScroller.refresh();">
+
+
+            <div class="panel-heading clearfix ">
+                <div class="pull-right" data-nq-paging-sizes=""></div>
+                <div class="pull-right" data-nq-table-search="" data-search-fields="firstname,lastname,profile.jobtitle"
+                     style="margin-right:20px;"></div>
+                <h2 class="panel-title pull-left"><i class="fic glyphicon glyphicon-list"></i> Users:</h2>
+                <div class="pull-left" style="padding-left:15px;">
+                    <button type="button" class="btn btn-xs btn-info" ng-click="contactsTable.refresh()"><i
+                            class="fic glyphicon glyphicon-refresh"></i> Refresh
+                    </button>
+                </div>
+                <div class="pull-left" style="padding-left:15px;">
+                    <button type="button" class="btn btn-xs btn-primary" data-nq-show-insert=""><i
+                            class="fic glyphicon glyphicon-plus-sign"></i> Add New
+                    </button>
+                </div>
+                <div class="pull-left" style="padding-left:15px;">
+                    <button type="button" class="btn btn-xs btn-danger" ng-click="contactsTable.removeRows()"><i
+                            class="fic glyphicon glyphicon-remove-circle"></i> Remove
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body table-responsive" data-nq-scroll="" data-qo-max-height="350px"
+                 data-qo-bar-offset="30" data-bar-model="tableScroller" style="overflow:hidden;">
+                <table class="table table-bordered table-hover bg-white">
+                    <!--nq-fix-table-scroll class would fix thead always visible at top of the table if you put the table into a scrollable container-->
+                    <thead class="nq-fix-table-scroll">
+                    <tr>
+                        <!--nq-column-sort directive would bind sorting handler to the element-->
+                        <th class="col-md-1"><h5>Datum</h5></th>
+                        <th colspan="2" data-nq-column-sort="lasttname" data-use-template="true"><h5>Name</h5></th>
+                        <th class="col-md-1"><h5>Auftragnummer</h5></th>
+                        <th class="col-md-1"><h5>Druckstelle durch Nietreste</h5></th>
+                        <th class="col-md-1"><h5>Beschädigung durch Grat</h5></th>
+                        <th class="col-md-1"><h5>Aufkocher auf der Oberfläche</h5></th>
+                        <th class="col-md-1"><h5>Etikett fehlerhaft / vertauscht</h5></th>
+                        <th class="col-md-1"><h5>Bauteil zu kurz</h5></th>
+                        <th class="col-md-1"><h5>Radien Felhen</h5></th>
+                        <th class="col-md-1"><h5>Rost am Bauteil</h5></th>
+                        <th class="col-md-1"><h5>Gewinde nicht vorhanden</h5></th>
+                        <th class="col-md-1"><h5>Sonstige Fehler</h5></th>
+                        <th class="col-md-1"><h5>Beschädigung Beschnitt</h5></th>
+                        <th class="col-md-1"><h5>Stückzahl gesamt</h5></th>
+                    </tr>
+                    </thead>
+                    <tbody class="flattened">
+                    <!--pageable-repeat is required sub directive-->
+                    <tr class="" th:each="user : ${users}">
+
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.username}"></td>
+
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!--add data-nq-pageable-results directive where you want and how many you want-->
+                        <div data-nq-pageable-results=""></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--add nq-pagination directive where you want and how many you want-->
+                        <div data-nq-pagination="" class="pull-right no-margin"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!--here is nq-pageable-template for edit or new-->
+            <div data-nq-pageable-template="" data-name="contactForm" ng-form="" data-alias="contact"
+                 data-on-change="panelTitle = contact.firstname + ' ' + contact.lastname" ng-submit="$save()"
+                 style="max-height:100%; overflow:hidden; overflow-y:auto;" nq-validate-form="">
+                <!--You are not able to load your content via ng-include. However, I think this way may be a best practice -->
+                <div ng-include="" data-src="'/templates/contactform.html'">
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,125 +1,46 @@
 <!DOCTYPE html>
 <html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-        <meta charset="UTF-8"/>
+        <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width" />
 
 
         <title>Coprii | Home</title>
-        <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/dist/images/favicon.ico}" type="image/x-icon"/>
-        <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/dist/images/favicon.ico}" type="image/x-icon"/>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <!-- Styles-->
+    <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../dist/css/ui-bootstrap-2.5.0-csp.css" th:href="@{/css/ui-bootstrap-2.5.0-csp.css}"/>
+    <link rel="stylesheet" href="../dist/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <!-- Js Scripts-->
+    <script src="../static/dist/js/angular.js" th:src="@{/js/angular.js}"></script>
+    <script src="../static/dist/js/angular-animate.js" th:src="@{/js/angular-animate.js}"></script>
+    <script src="../static/dist/js/angular-touch.js" th:src="@{/js/angular-touch.js}"></script>
 
-        <link href="../static/dist/css/addon/effect-light.min.css" th:href="@{/dist/css/addon/effect-light.min.css}" rel="stylesheet" />
-        <link href="../static/dist/css/quantumui.min.css" th:href="@{/dist/css/quantumui.min.css}" rel="stylesheet" />
-        <style type="text/css">
-            h1 {
-                color: #8a8a8a;
-                font-size: 30px;
-            }
+    <script src="../static/dist/js/ui-bootstrap-tpls-2.5.0.min.js" th:src="@{/js/ui-bootstrap-tpls-2.5.0.min.js}"></script>
+    <script src="../static/dist/js/ui-bootstrap-2.5.0.min.js" th:src="@{/js/ui-bootstrap-2.5.0.min.js}"></script>
 
-            h1 i {
-                color: #9a9a9a;
-                font-size: 24px;
-            }
-
-            h2.directive {
-                margin-top: 0;
-                font-size: 22px;
-            }
-
-            .color-box {
-                width: 16px;
-                height: 16px;
-                display: inline-block;
-            }
-
-            .bg-white {
-                background-color: #fff;
-            }
-            /**pageable icons*/
-            .fu-search:before,
-            .fu-arrow-left:before,
-            .fu-angle-l:before,
-            .fu-arrow-right:before,
-            .fu-angle-r:before {
-                font-family: 'Glyphicons Halflings';
-            }
-
-            .fu-search:before {
-                content: "\e003";
-            }
-
-            .fu-arrow-left:before {
-                content: "\e091";
-            }
-
-            .fu-arrow-right:before {
-                content: "\e092";
-            }
-
-            .fu-angle-l:before {
-                content: "\e257";
-            }
-
-            .fu-angle-r:before {
-                content: "\e258";
-            }
-
-            .text-block {
-                display: block;
-            }
-
-            .text-sm {
-                font-size: 0.9em;
-            }
-
-            .text-xs {
-                font-size: 0.7em;
-            }
-
-            .gray {
-                color: #aaa;
-            }
-
-            .navbar-toggle {
-                margin-right: 0;
-            }
-        </style>
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-        <script src="https://code.angularjs.org/1.3.13/angular.min.js"></script>
-        <script src="https://code.angularjs.org/1.3.13/angular-sanitize.min.js"></script>
-        <script src="https://code.angularjs.org/1.3.13/angular-animate.min.js"></script>
-        <script src="../static/dist/js/quantumui-all.min.js" th:src="@{/dist/js/quantumui-all.min.js}"></script>
-        <script src="../static/dist/config/icons.js" th:src="@{/dist/config/icons.js}"></script>
-
-        <script src="../static/dist/doc/js/app.js" th:src="@{/dist/doc/js/app.js}" ></script>
-        <script src="../static/dist/doc/js/indexController.js" th:src="@{/dist/doc/js/indexController.js}" ></script>
 
 
 </head>
-<body data-ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;" >
+<body>
 <!-- Navbar -->
 <header th:include="_menu :: navbar-menu" />
-<!-- Colapse Menu Right -->
-<div th:include="_menu :: colapse-menu" />
+
 <!-- Content -->
-<div class="content-wrapper container-fluid">
-<div class="container-fluid">
+<div class="container" style="padding-top: 50px;">
     <div class="clearfix">
-        <h1> <i class="glyphicon glyphicon-home"></i> Home</h1>
+        <h1> <span class="glyphicon glyphicon-home"></span> Home</h1>
         <hr />
-        <div class="panel panel-default" data-nq-pageable="contactList" data-qo-alias="contactsTable" data-qo-pageable-model="contacts"
-             data-qo-selectable="true" data-on-refresh="tableScroller.refresh();">
+        <div class="panel panel-default" >
             <div class="panel-heading clearfix">
                 <!--add nq-paging-sizes directive where you want and how many you want-->
                 <div class="pull-right" data-nq-paging-sizes=""></div>
                 <!--add nq-table-search directive where you want and how many you want-->
                 <div class="pull-right" data-nq-table-search="" data-search-fields="firstname,lastname,profile.jobtitle" style="margin-right:20px;"></div>
-                <h2 class="panel-title pull-left"><i class="fic glyphicon glyphicon-trash"></i> Schrott</h2>
+                <h2 class="panel-title pull-left"><span class="fic glyphicon glyphicon-trash"></span> Schrott</h2>
                 <div class="pull-left" style="padding-left:15px;">
                     <button type="button" class="btn btn-xs btn-info" ng-click="contactsTable.refresh()"><i class="fic glyphicon glyphicon-refresh"></i> Refresh</button>
                 </div>
@@ -139,18 +60,6 @@
     </div>
 
 </div>
-</div>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-52518176-5', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>

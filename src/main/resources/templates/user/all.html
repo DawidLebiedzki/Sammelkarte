@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width" />
+
+
+    <title>Coprii | Alle Benutzer</title>
+    <!-- Styles-->
+    <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" href="../dist/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+
+    <!-- Js Scripts-->
+    <script src="../static/dist/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
+    <script src="../static/dist/js/ui-bootstrap-tpls-2.5.0.min.js" th:src="@{/js/ui-bootstrap-tpls-2.5.0.min.js}"></script>
+
+</head>
+
+<body ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;" >
+<!-- Navbar -->
+<header th:include="_menu :: navbar-menu" />
+<!-- Colapse Menu Right -->
+<div th:include="_menu :: colapse-menu" />
+
+<div class="content-wrapper container-fluid">
+    <div class="container-fluid">
+
+        <h1><i class="glyphicon glyphicon-user"></i> All Users</h1>
+        <hr/>
+        <div class="panel panel-default" data-nq-pageable="users" data-qo-alias="contactsTable" data-qo-pageable-model="users"
+             data-qo-selectable="true" data-on-refresh="tableScroller.refresh();">
+
+
+            <div class="panel-heading clearfix ">
+                <div class="pull-right" data-nq-paging-sizes=""></div>
+                <div class="pull-right" data-nq-table-search="" data-search-fields="firstname,lastname,profile.jobtitle" style="margin-right:20px;"></div>
+                <h2 class="panel-title pull-left"><i class="fic glyphicon glyphicon-list"></i> Users:</h2>
+                <div class="pull-left" style="padding-left:15px;">
+                    <button type="button" class="btn btn-xs btn-info" ng-click="contactsTable.refresh()"><i class="fic glyphicon glyphicon-refresh"></i> Refresh</button>
+                </div>
+                <div class="pull-left" style="padding-left:15px;">
+                    <button type="button" class="btn btn-xs btn-primary" data-nq-show-insert=""><i class="fic glyphicon glyphicon-plus-sign"></i> Add New</button>
+                </div>
+                <div class="pull-left" style="padding-left:15px;">
+                    <button type="button" class="btn btn-xs btn-danger" ng-click="contactsTable.removeRows()"><i class="fic glyphicon glyphicon-remove-circle"></i> Remove</button>
+                </div>
+            </div>
+            <div class="panel-body table-responsive" data-nq-scroll="" data-qo-max-height="350px" data-qo-bar-offset="40" data-bar-model="tableScroller" style="overflow:hidden;">
+                <table class="table table-bordered table-hover bg-white">
+                    <!--nq-fix-table-scroll class would fix thead always visible at top of the table if you put the table into a scrollable container-->
+                    <thead class="nq-fix-table-scroll">
+                    <tr>
+                        <!--nq-column-sort directive would bind sorting handler to the element-->
+                        <th colspan="2" data-nq-column-sort="lasttname" data-use-template="true">Name</th>
+                        <th class="col-xs-3" data-nq-column-sort="username" data-use-template="true">Login</th>
+
+                        <th class="col-xs-1">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody class="flattened">
+                    <!--pageable-repeat is required sub directive-->
+                    <tr data-pageable-repeat="user in users">
+                        <td type="hidden">{{user.id}}</td>
+                        <td >{{user.firstName}}</td>
+                        <td >{{user.lastName}}</td>
+                        <td >{{user.username}}</td>
+
+                        <td>
+                            <a role="button" tabindex="0" class="titip-left" data-title="Remove" th:action="@{/user/{id}}" th:method="delete" th:field="*{id}">
+                                <i class="fic glyphicon glyphicon-remove"></i>
+                            </a>
+                            <a role="button" tabindex="0" data-nq-show-edit="" class="titip-left" data-title="Update">
+                                <i class="fic glyphicon glyphicon-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot class="nq-fix-table-scroll">
+                    <tr>
+                        <th colspan="2">Name</th>
+                        <th class="col-xs-3">Login</th>
+                        <th class="col-xs-1">Action</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!--add data-nq-pageable-results directive where you want and how many you want-->
+                        <div data-nq-pageable-results=""></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--add nq-pagination directive where you want and how many you want-->
+                        <div data-nq-pagination="" class="pull-right no-margin"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!--here is nq-pageable-template for edit or new-->
+
+
+    </div>
+</div>
+</div>
+</body>
+</html>

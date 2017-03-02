@@ -1,29 +1,29 @@
 package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserRepository userRepository;
+    private DataSource dataSource;
 
-    // Roles
-    private static final String ADMIN = "ADMIN";
-    private static final String USER = "USER";
 
-    //Add users and roles
+    //Authentication
     @Autowired
     public void configureAuth(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.inMemoryAuthentication()
-                .withUser("dawid").password("123").roles(USER)
-                .and()
-                .withUser("anna").password("456").roles(USER, ADMIN);
+        authenticationManagerBuilder.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
     // Permissions
@@ -31,11 +31,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers("/index/").permitAll()
-                .antMatchers("/user/**").hasRole(ADMIN)
-                .antMatchers("/scrap/add-scrap").hasAnyRole(USER,ADMIN)
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/index")
-                .and().logout().logoutSuccessUrl("/index");
+                .antMatchers("/user/**").access("hasRole('ADMIN')")
+                .antMatchers("/scrap/**").access("hasAnyRole('USER', 'ADMIN')")
+                .and().formLogin().loginPage("/login")
+                .usernameParameter("username").passwordParameter("password")
+                .defaultSuccessUrl("/index")
+                .and().logout().logoutSuccessUrl("/index")
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
+                .and()
+                .csrf();
     }
 
+    @Bean(name = "userDetailsService")
+    public UserDetailsService userDetailsService(){
+        JdbcDaoImpl jdbcImpl = new JdbcDaoImpl();
+        jdbcImpl.setDataSource(dataSource);
+        jdbcImpl.setUsersByUsernameQuery(
+                "select username,password,enabled from users where username=?"
+        );
+        jdbcImpl.setAuthoritiesByUsernameQuery(
+                "select username, role from user_roles where username=?"
+        );
+        return jdbcImpl;
+    }
+
+    @Bean(name = "passwordEncoder")
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
 }

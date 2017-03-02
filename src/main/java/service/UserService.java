@@ -1,12 +1,11 @@
 package service;
 
-import javax.transaction.Transactional;
-
 import model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +13,11 @@ import java.util.List;
 @Transactional
 public class UserService {
 
+
 	private final UserRepository userRepository;
 
-	protected UserService(UserRepository userRepository) {
+	@Autowired
+	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
@@ -26,5 +27,21 @@ public class UserService {
 			users.add(user);
 		}
 		return users;
+	}
+
+    public void save(User user) {
+		userRepository.save(user);
+    }
+
+	public void getUserByUsername(String username) {
+		userRepository.getUserByUsername(username);
+	}
+
+	public boolean exists(String username){
+		return userRepository.exists(username);
+	}
+
+	public void delete(int id) {
+		userRepository.delete(String.valueOf(id));
 	}
 }
