@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="../dist/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
 
     <!-- Js Scripts-->
+
+    <script src="../static/dist/js/ui-bootstrap-tpls-2.5.0.min.js" th:src="@{/js/ui-bootstrap-tpls.min.js}"></script>
+    <script src="../static/dist/js/ui-bootstrap-2.5.0.min.js" th:src="@{/js/ui-bootstrap.min.js}"></script>
     <script src="../static/dist/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
-    <script src="../static/dist/js/ui-bootstrap-tpls-2.5.0.min.js" th:src="@{/js/ui-bootstrap-tpls-2.5.0.min.js}"></script>
 </head>
 
 <body data-ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;" >
@@ -24,7 +26,7 @@
 <div th:include="_menu :: colapse-menu" />
 
 <div class="content-wrapper container-fluid">
-    <div class="container-fluid">
+    <div class="container">
         <div class="clearfix">
             <h1><i class="glyphicon glyphicon-user"></i> Add new user</h1>
             <hr/>
@@ -80,8 +82,12 @@
                         </select>
                         </div>
                     </div>-->
-                    <button type="submit" class="btn btn-primary pull-right active form-control ">Speichern</button>
+                    <div class="form-group">
 
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <button type="submit" class="btn btn-primary active ">Speichern</button>
+                    </div>
                 </form>
 
 

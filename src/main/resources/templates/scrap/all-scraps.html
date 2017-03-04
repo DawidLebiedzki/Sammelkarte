@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -8,22 +8,27 @@
 
     <title>Coprii | Alle Benutzer</title>
     <!-- Styles-->
-    <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
-    <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
-    <link rel="stylesheet" href="../dist/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="shortcut icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/css/ui-bootstrap-2.5.0-csp.css" th:href="@{/css/ui-bootstrap-2.5.0-csp.css}"/>
 
     <!-- Js Scripts-->
-    <script src="../static/dist/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
-    <script src="../static/dist/js/ui-bootstrap-tpls-2.5.0.min.js" th:src="@{/js/ui-bootstrap-tpls-2.5.0.min.js}"></script>
+    <script src="../static/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
+    <script src="../static/js/angular-animate.js" th:src="@{/js/angular-animate.js}"></script>
+    <script src="../static/js/angular-sanitize.min.js" th:src="@{/js/angular-sanitize.min.js}"></script>
+    <script src="../static/js/angular-strap.min.js" th:src="@{/js/angular-strap.min.js}"></script>
+    <script src="../static/js/angular-strap.tpl.min.js" th:src="@{/js/angular-strap.tpl.min.js}"></script>
+    <script src="../static/app/app.js" th:src="@{/app/app.js}"></script>
 
 </head>
 
-<body data-ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;">
+<body ng-controller="MainCtrl">
 <!-- Navbar -->
 <header th:include="_menu :: navbar-menu"/>
 
 
-<div class="content-wrapper container-fluid">
+<div class="content-wrapper container-fluid" style="padding-top: 50px;">
     <div class="container">
         <div class="clearfix">
             <h1><span class="glyphicon glyphicon-trash"></span> Fehlersammelkarte</h1>
@@ -40,7 +45,7 @@
 
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Auftragsnummer :</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <input type="text" class="form-control" name="lastName"
                                                placeholder="Auftragsnummer"
                                                required="required"/>
@@ -48,10 +53,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Variante :</label>
-                                    <div class="col-md-4">
-                                        <select class="form-control" name="staticSelectModel" data-nq-select=""
-                                                data-qo-placeholder="static select options"
-                                                data-ng-model="staticSelectModel">
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="staticSelectModel" nq-select=""
+                                                placeholder="Variante">
                                             <option>F00773</option>
                                             <option>F00775</option>
                                             <option>F00848</option>
@@ -77,12 +81,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" ng-controller="DatepickerDemoCtrl" ng-class="{'has-error': datepickerForm.date.$invalid}">
                                     <label class="col-md-6 control-label">Datum :</label>
-                                    <div class="col-md-4" ng-init="changeValue = 5">
-                                        <input type="text" ng-model="commonDatepicker" class="form-control"
-                                               data-nq-datepicker="" placeholder="datepicker"/>
-
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               ng-model="selectedDate" name="date" bs-datepicker=""/>
                                     </div>
                                 </div>
                             </div>
@@ -90,10 +93,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Maschinen-Nr :</label>
-                                    <div class="col-md-4">
-                                        <select class="form-control" name="staticSelectModel" data-nq-select=""
-                                                data-qo-placeholder="static select options"
-                                                data-ng-model="staticSelectModel">
+                                    <div class="col-md-6">
+                                        <select class="form-control" >
                                             <option>Exzenterpresse 27</option>
                                             <option>Exzenterpresse 108</option>
                                         </select>
@@ -103,10 +104,8 @@
 
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Kunde :</label>
-                                    <div class="col-md-4">
-                                        <select class="form-control" name="staticSelectModel" data-nq-select=""
-                                                data-qo-placeholder="static select options"
-                                                data-ng-model="staticSelectModel">
+                                    <div class="col-md-6">
+                                        <select class="form-control">
                                             <option>Webasto</option>
                                             <option>Inteva</option>
                                         </select>
@@ -135,7 +134,7 @@
 
                                 <div class="form-group" style="padding-top: 50px;">
                                     <label class="col-md-6 control-label">Drukstellen durch Nietreste :</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="firstName" placeholder="0"/>
                                             <span class="input-group-btn">
@@ -148,7 +147,7 @@
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Beschädigung der Beschichtung durch Grat
                                         :</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="lastName" placeholder="0"
                                                    required="required"/>
@@ -161,7 +160,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Aufkocher auf der Oberfläche :</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="lastName" placeholder="0"
                                                    required="required"/>
@@ -174,7 +173,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Etikett fehlerhaft / vertauscht :</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="lastName" placeholder="0"
                                                    required="required"/>
@@ -188,7 +187,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Bauteil zu kurz :</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="lastName" placeholder="0"
                                                    required="required"/>
@@ -202,7 +201,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-6 control-label">Radien fehlen (Beschnittfehler) :</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="lastName" placeholder="0"
                                                    required="required"/>

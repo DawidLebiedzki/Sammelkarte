@@ -1,101 +1,24 @@
 <!DOCTYPE html>
-<html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width" />
-
-
     <title>Coprii | Add Schrott</title>
-    <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
-    <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <!-- Styles-->
+    <link rel="shortcut icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/css/ui-bootstrap-2.5.0-csp.css" th:href="@{/css/ui-bootstrap-2.5.0-csp.css}"/>
 
-    <link href="../static/dist/css/addon/effect-light.min.css" th:href="@{/css/addon/effect-light.min.css}" rel="stylesheet" />
-    <link href="../static/dist/css/quantumui.min.css" th:href="@{/css/quantumui.min.css}" rel="stylesheet" />
-    <style type="text/css">
-        h1 {
-            color: #8a8a8a;
-            font-size: 30px;
-        }
-
-        h1 i {
-            color: #9a9a9a;
-            font-size: 24px;
-        }
-
-        h2.directive {
-            margin-top: 0;
-            font-size: 22px;
-        }
-
-        .color-box {
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-        }
-
-        .bg-white {
-            background-color: #fff;
-        }
-        /**pageable icons*/
-        .fu-search:before,
-        .fu-arrow-left:before,
-        .fu-angle-l:before,
-        .fu-arrow-right:before,
-        .fu-angle-r:before {
-            font-family: 'Glyphicons Halflings';
-        }
-
-        .fu-search:before {
-            content: "\e003";
-        }
-
-        .fu-arrow-left:before {
-            content: "\e091";
-        }
-
-        .fu-arrow-right:before {
-            content: "\e092";
-        }
-
-        .fu-angle-l:before {
-            content: "\e257";
-        }
-
-        .fu-angle-r:before {
-            content: "\e258";
-        }
-
-        .text-block {
-            display: block;
-        }
-
-        .text-sm {
-            font-size: 0.9em;
-        }
-
-        .text-xs {
-            font-size: 0.7em;
-        }
-
-        .gray {
-            color: #aaa;
-        }
-
-        .navbar-toggle {
-            margin-right: 0;
-        }
-    </style>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-    <script src="https://code.angularjs.org/1.3.13/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.3.13/angular-sanitize.min.js"></script>
-    <script src="https://code.angularjs.org/1.3.13/angular-animate.min.js"></script>
-    <script src="../static/dist/js/quantumui-all.min.js" th:src="@{/js/quantumui-all.min.js}"></script>
-    <script src="../static/dist/config/icons.js" th:src="@{/config/icons.js}"></script>
-    <script src="../static/dist/doc/js/app.js" th:src="@{/doc/js/app.js}" ></script>
-    <script src="../static/dist/doc/js/indexController.js" th:src="@{/doc/js/indexController.js}" ></script>
+    <!-- Js Scripts-->
+    <script src="../static/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
+    <script src="../static/js/angular-animate.js" th:src="@{/js/angular-animate.js}"></script>
+    <script src="../static/js/angular-sanitize.min.js" th:src="@{/js/angular-sanitize.min.js}"></script>
+    <script src="../static/js/angular-strap.min.js" th:src="@{/js/angular-strap.min.js}"></script>
+    <script src="../static/js/angular-strap.tpl.min.js" th:src="@{/js/angular-strap.tpl.min.js}"></script>
+    <script src="../static/app/app.js" th:src="@{/app/app.js}"></script>
 </head>
 
 <body data-ng-controller="indexController as ctrl" style="height:100%; padding-top:55px;" >

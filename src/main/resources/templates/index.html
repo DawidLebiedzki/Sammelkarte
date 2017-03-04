@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html ng-app="myApp" lang="en" xmlns:="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -9,53 +9,46 @@
         <title>Coprii | Home</title>
 
     <!-- Styles-->
-    <link rel="shortcut icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
-    <link rel="icon" href="../static/dist/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
-    <link rel="stylesheet" href="../dist/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
-    <link rel="stylesheet" href="../dist/css/ui-bootstrap-2.5.0-csp.css" th:href="@{/css/ui-bootstrap-2.5.0-csp.css}"/>
-    <link rel="stylesheet" href="../dist/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
-    <!-- Js Scripts-->
-    <script src="../static/dist/js/angular.js" th:src="@{/js/angular.js}"></script>
-    <script src="../static/dist/js/angular-animate.js" th:src="@{/js/angular-animate.js}"></script>
-    <script src="../static/dist/js/angular-touch.js" th:src="@{/js/angular-touch.js}"></script>
+    <link rel="shortcut icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/css/ui-bootstrap-2.5.0-csp.css" th:href="@{/css/ui-bootstrap-2.5.0-csp.css}"/>
 
-    <script src="../static/dist/js/ui-bootstrap-tpls-2.5.0.min.js" th:src="@{/js/ui-bootstrap-tpls-2.5.0.min.js}"></script>
-    <script src="../static/dist/js/ui-bootstrap-2.5.0.min.js" th:src="@{/js/ui-bootstrap-2.5.0.min.js}"></script>
+    <!-- Js Scripts-->
+    <script src="../static/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
+    <script src="../static/js/angular-animate.js" th:src="@{/js/angular-animate.js}"></script>
+    <script src="../static/js/angular-sanitize.min.js" th:src="@{/js/angular-sanitize.min.js}"></script>
+    <script src="../static/js/angular-strap.min.js" th:src="@{/js/angular-strap.min.js}"></script>
+    <script src="../static/js/angular-strap.tpl.min.js" th:src="@{/js/angular-strap.tpl.min.js}"></script>
+    <script src="../static/app/app.js" th:src="@{/app/app.js}"></script>
+
 
 
 
 </head>
-<body>
+<body ng-controller="MainCtrl">
 <!-- Navbar -->
 <header th:include="_menu :: navbar-menu" />
 
 <!-- Content -->
 <div class="container" style="padding-top: 50px;">
     <div class="clearfix">
-        <h1> <span class="glyphicon glyphicon-home"></span> Home</h1>
-        <hr />
+
         <div class="panel panel-default" >
-            <div class="panel-heading clearfix">
-                <!--add nq-paging-sizes directive where you want and how many you want-->
-                <div class="pull-right" data-nq-paging-sizes=""></div>
-                <!--add nq-table-search directive where you want and how many you want-->
-                <div class="pull-right" data-nq-table-search="" data-search-fields="firstname,lastname,profile.jobtitle" style="margin-right:20px;"></div>
-                <h2 class="panel-title pull-left"><span class="fic glyphicon glyphicon-trash"></span> Schrott</h2>
-                <div class="pull-left" style="padding-left:15px;">
-                    <button type="button" class="btn btn-xs btn-info" ng-click="contactsTable.refresh()"><i class="fic glyphicon glyphicon-refresh"></i> Refresh</button>
-                </div>
-                <div class="pull-left" style="padding-left:15px;">
-                    <button type="button" class="btn btn-xs btn-primary" data-nq-show-insert=""><i class="fic glyphicon glyphicon-plus-sign"></i> Add New</button>
-                </div>
-                <div class="pull-left" style="padding-left:15px;">
-                    <button type="button" class="btn btn-xs btn-danger" ng-click="contactsTable.removeRows()"><i class="fic glyphicon glyphicon-remove-circle"></i> Remove</button>
-                </div>
-            </div>
 
-
+           <input type="text" ng-model="yourName" placeholder="Enter a name here"/>
+            <hr/>
+            <h3>Hello {{yourName}}</h3>
 
         </div>
+        <div class="bs-docs-section" ng-controller="DatepickerDemoCtrl">
+            <pre class="bs-example-scope">$scope.selectedDate = {{selectedDate}};</pre>
 
+            <div class="form-group" ng-class="{'has-error': datepickerForm.date.$invalid}">
+                <label class="control-label"><i class="fa fa-calendar"></i> Date <small>(as date)</small></label>
+                <input type="text" class="form-control" ng-model="selectedDate" name="date" bs-datepicker=""/>
+            </div>
+        </div>
         <hr />
     </div>
 
